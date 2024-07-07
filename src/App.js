@@ -1,11 +1,12 @@
 import React from 'react'
-import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Page1 from './pages/nested-compo/Page1';
+import RootLayout from './components/RootLayout';
+import NotFound from './components/NotFound';
 import Page2 from './pages/nested-compo/Page2';
-
+import Page1 from './pages/nested-compo/Page1';
 
 
 const App = () => {
@@ -13,28 +14,40 @@ const App = () => {
  const router = createBrowserRouter([
   {
     path: '/', 
-    element: <Home />,
+    element: <RootLayout />,
     children: [
       {
-        path: 'page1',
-        element: <Page1 />,
-
+        index: true,
+        element: <Home />,
+        
+      },
+      {
+        path: 'about',
+        element: <About />,
+        
+      },
+      {
+        path: 'contact',
+        element: <Contact />,
+        
       },
       {
         path: 'page2',
         element: <Page2 />,
         
+      },
+      {
+        path: 'page1',
+        element: <Page1 />,
+        
+      },
+      {
+        path:'*',
+        element: <NotFound/>
       }
     ]
   },
-  {
-    path: 'about',
-    element:<About />
-  },
-  {
-    path: 'contact',
-    element: <Contact />
-  }
+  
  ]);
 
   return <RouterProvider router={router} />
