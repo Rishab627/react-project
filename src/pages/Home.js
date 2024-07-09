@@ -33,6 +33,8 @@ const Home = () => {
           return <div key={i}>
             <img src={user.image} alt="" />
             <h1>{user.username}</h1>
+            <h1>{user.email}</h1>
+
           </div>
         })}
       </div>
